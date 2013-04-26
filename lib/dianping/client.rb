@@ -15,14 +15,12 @@ module DianPing
         @cfg = File.expand_path("../cfg.yml", __FILE__)
       end
       @cfg_hash = YAML.load_file(@cfg)
-      @appkey = @cfg_hash["dianping"]["appkey"]
-      @appsecret = @cfg_hash["dianping"]["appsecret"]
-    end
-
-    def hi
-      msg = "hello there"
-      puts msg
-      msg
+      options = {
+        :app_key =>  @cfg_hash["dianping"]["appkey"],
+        :app_secret => @cfg_hash["dianping"]["appsecret"]
+      }.merge(options)
+      @appkey = options[:app_key]
+      @appsecret = options[:app_secret]
     end
   end
 end
